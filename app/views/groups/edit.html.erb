@@ -1,30 +1,5 @@
 <div class="col-md-4 col-md-offset-4">
   <h2>编辑讨论版</h2>
 
-  <hr>
-  <%= form_for @group do |f| %>
-
-  <% if @group.errors.any? %>
-    <ul>
-      <% @group.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-    </ul>
-  <% end %>
-
-  <div class="form-group">
-    <label for="title">标题</label>
-    <br>
-    <%= f.text_field :title ,class: "form-control" %>
-    <br>
-
-    <label for="description">叙述</label>
-    <br>
-    <%= f.text_area :description, class: "form-control" %>
-    <br>
-  </div>
-
-
-    <%= f.submit "Submit", :disable_with => 'Submiting...', class: "btn btn-default" %>
-  <% end %>
+  <%= render "form" %>
 </div>
