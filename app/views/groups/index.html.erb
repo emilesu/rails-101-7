@@ -10,6 +10,7 @@
         <td>Title</td>
         <td>Description</td>
         <td>Creator</td>
+        <td>created_at</td>
       </tr>
     </thead>
     <tbody>
@@ -19,6 +20,7 @@
           <td><%= link_to(group.title, group_path(group)) %></td>
           <td><%= group.description %></td>
           <td><%= group.user.email %></td>
+          <td><%= group.created_at %></td>
           <td>
             <% if current_user && current_user == group.user %>
               <%= link_to("Edit", edit_group_path(group), class: "btn btn-sm btn-default") %>
@@ -29,4 +31,9 @@
       <% end %>
     </tbody>
   </table>
+
+  <div class="text-center">
+    <%= will_paginate @groups %>
+  </div>
+
 </div>
