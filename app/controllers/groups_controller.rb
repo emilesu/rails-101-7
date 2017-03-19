@@ -42,6 +42,32 @@ class GroupsController < ApplicationController
     redirect_to groups_path, notice: "已删除-"+@group.title
   end
 
+  def join
+    @group = Group.find(params[:id])
+
+    if !current_user.is_member_of?(@group)
+      current_user.join!(@group)
+      flash[:natice] = "加入本讨论组成功！"
+    else
+      flash[:warning] = "你已是本讨论组成员！"
+    end
+
+    redirect_to group_path(@group)
+  end
+
+  def quit
+    @group = Group.find(params[:id])
+
+    if current_user.is_member_of?(@group)
+      current_user.quit!(@group)
+      flash[:alert] = "已退出本讨论组!"
+    else
+      flash[:warning] = "你不是本讨论组成员！"
+    end
+
+    redirect_to group_path(@group)
+  end
+
 
 
   private
